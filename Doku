@@ -1,0 +1,30 @@
+Mein Vorgehen: (Gibt sicher auch andere Möglichkeiten)
+
+1. File auf Windows erstellen unter folgendem Pfad: 
+
+C:\docker-mini-projekt
+
+2. Hier erstelle ich dann eine Txt Datei namens Dockerfile (ohne Endung)
+
+Die Dockerfile beinhalet folgendes: 
+
+FROM nginx:latest
+COPY ./html /usr/share/nginx/html
+
+
+3. docker build -t mein-webserver .
+
+
+4. docker images - ob herauszufinden, ob das Image erstellt wurde
+
+
+5. Container Starten:  docker run -d --name mein-mini-projekt -p 8080:80 -v ${PWD}/html:/usr/share/nginx/html -v ${PWD}/logs:/var/log/nginx mein-webserver
+
+-d = (detached) Lässt den Container im Hintergrund laufen,
+-p 8080:80 = Port Mapping
+
+6. Docker ps --> Wenn mein-webserver läuft und bei Status Up steht läuft er.
+
+7. Index.html Datei mit einem Code befüllen im richtigen Pfad (C:\docker-mini-projekt\html)
+
+8. http://localhost:8080/ aufrufen, nun sollte man etwas sehen (das was inder index html datei steht)
